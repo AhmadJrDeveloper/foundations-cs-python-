@@ -1,0 +1,80 @@
+#Question_1
+def factorial(n):
+  fac = 1
+  for i in range(1,n+1):
+   fac *=i
+  return fac
+number = int(input('Enter a number to calculate the factorial: '))
+
+while(number < 0 or number == 0):
+  number = (int(input('Enter a number greater than zero please: ')))
+  
+print('The factorial result for',number,'is:',factorial(number))
+-----------------------------------------------------------------------------
+#Question_2
+def div(n):
+  list1 = []
+  for i in range(1,n+1):
+    if n % i == 0:
+      list1.append(i)
+  return list1
+number = int(input("Enter a number to find its divisors: "))
+while (number < 0 or number == 0):
+  number = int(input("Enter a number greater than zero please: "))
+
+print(div(number))
+-----------------------------------------------------------------------------
+#Question_3
+def reverse_string(word):
+  new_word = ""
+  for i in range(len(word)-1,-1,-1):
+    new_word += word[i]
+  return new_word
+rev = input("Enter a word to get the reverse of it: ")
+print(reverse_string(rev))
+-----------------------------------------------------------------------------
+#Question_4
+def even_list(list):
+  new_list = []
+  for i in list:
+    if i % 2 == 0:
+      new_list.append(i)
+  return new_list
+number = input('Enter your list seperated by spaces please: ')
+list = [int(i) for i in number.split()]
+print(even_list(list))
+-----------------------------------------------------------------------------
+#Question_5
+def stringPassword(password):
+  if (len(password) < 8):
+    return ('Password is short')
+  special_char='#?!$'
+  lower_case = False
+  upper_case = False
+  special_case = False
+  for i in password:
+    if (i.islower()):
+      lower_case = True
+    elif (i.isupper()):
+      upper_case = True
+    elif (i in special_char):
+      special_case = True
+  if(lower_case and upper_case and special_case):
+    return ("Strong Password")
+  else:
+    return ('Weak Password')
+password = input('Enter a password: ')
+print(stringPassword(password))
+      
+      
+      
+      
+  
+  
+
+
+
+
+
+
+
