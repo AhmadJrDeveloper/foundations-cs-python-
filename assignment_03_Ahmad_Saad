@@ -1,0 +1,84 @@
+
+def sumTuples(tupel1, tupel2):
+    if len(tupel1) != len(tupel2):
+        return ('Tuples should be of the same length.')
+    else:
+        return tuple(tup1 + tup2 for tup1, tup2 in zip(tupel1, tupel2))
+    
+
+def exportJSON(data_dict, filename):
+    with open(filename, 'exp') as json_file:
+        json_str = "{\n"
+        for key, value in data_dict.items():
+            json_str += f'    "{key}": {value},\n'
+        json_str = json_str[:-2] + "\n}" 
+        json_file.write(json_str)
+
+def importJSON(filename):
+    with open(filename, 'imp') as json_file:
+        json_str = json_file.read()
+        json_str = json_str.strip()
+        if not json_str.startswith("{") or not json_str.endswith("}"):
+            raise ValueError("Invalid JSON format in the file.")
+        
+        json_str = json_str[1:-1]
+        json_str = json_str.strip()
+
+        data_list = json_str.split(',')
+        data_dict = {}
+        for item in data_list:
+            key, value = item.strip().split(":")
+            data_dict[key.strip().strip('"')] = int(value)
+
+        return data_dict
+while True:
+    print("1. Sum Tuples")
+    print("2. Import JSON")
+    print("3. Export JSON")
+    print("4. Exit")
+    print("-" * 25)
+    choice = int(input("Enter a choice: "))
+
+    if choice == 1:
+        try:
+            tuple1 = tuple(map(int, input('Enter First tuple (comma-separated): ').split(',')))
+            tuple2 = tuple(map(int, input('Enter Second tuple (comma-separated): ').split(',')))
+            output = sumTuples(tuple1, tuple2)
+            print("Result:", output)
+        except ValueError as ex:
+            print("Error:", ex)
+    elif choice == 2:
+            try:
+                filename = input("Enter the filename for JSON export: ")
+                data_dict = eval(input("Enter the JSON data as a dictionary (e.g., {'key': value}): "))
+                exportJSON(data_dict, filename)
+                print("Data has been successfully exported to", filename)
+            except Exception as e:
+                print("Error:", e)
+
+    elif choice == 3:
+            try:
+                filename = input("Enter the filename for JSON import: ")
+                data_dict = importJSON(filename)
+                print("Data imported from", filename)
+                print("Dictionary:", data_dict)
+            except ValueError as e:
+                print("Error:", e)
+
+    elif choice == 4:
+        print("Program Finished.")
+        break
+
+    else:
+        print("Invalid choice. Please choose between(1-2-3-4)")
+code answer ^^^^^^^
+
+Big O answer:
+a. O(N^3)
+b. O(N^3)
+c. O(N!)
+d. O(NlogN)
+e. O(N)
+f. O(N^2)
+g. O(N^2)
+h. O(N!)
